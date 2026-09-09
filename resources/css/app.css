@@ -1,11 +1,840 @@
-@import 'tailwindcss';
+/* =====================================================
+   ZAPMOR HOME PAGE
+   ===================================================== */
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+/* ---------- RESET ---------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111936;
+    background: #f8faff;
+}
+
+
+/* =====================================================
+   NAVBAR
+   ===================================================== */
+
+.navbar {
+    width: 100%;
+    height: 84px;
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeF5;
+    position: relative;
+    z-index: 100;
+}
+
+
+.nav-container {
+    width: min(1360px, 92%);
+    height: 100%;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* ---------- LOGO ---------- */
+
+.logo {
+    text-decoration: none;
+
+    font-size: 29px;
+    font-weight: 800;
+
+    letter-spacing: -1.2px;
+
+    background: linear-gradient(
+        90deg,
+        #276cff,
+        #bd27e9
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* ---------- NAV MENU ---------- */
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+}
+
+
+.nav-menu a {
+    text-decoration: none;
+    color: #5a6078;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    transition: 0.25s;
+}
+
+
+.nav-menu a:hover {
+    color: #356df5;
+}
+
+
+.services-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+.arrow {
+    font-size: 18px;
+}
+
+
+/* ---------- LOGIN ---------- */
+
+.login-btn {
+    border: 1.5px solid #1470ff;
+
+    padding: 13px 23px;
+
+    border-radius: 30px;
+
+    color: #075fe1 !important;
+}
+
+
+/* ---------- APP BUTTON ---------- */
+
+.app-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 13px 23px;
+
+    border-radius: 30px;
+
+    color: white !important;
+
+    background: linear-gradient(
+        100deg,
+        #2672ff,
+        #b729ed
+    );
+
+    box-shadow: 0 10px 25px rgba(79, 89, 255, 0.25);
+}
+
+
+.play-icon {
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.hero {
+    min-height: calc(100vh - 84px);
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at 5% 5%,
+            rgba(112, 178, 255, 0.27),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 96% 0%,
+            rgba(238, 150, 255, 0.27),
+            transparent 32%
+        ),
+
+        linear-gradient(
+            120deg,
+            #f2f7ff 0%,
+            #ffffff 45%,
+            #f7f4ff 100%
+        );
+}
+
+
+.hero-container {
+    width: min(1360px, 92%);
+
+    min-height: calc(100vh - 84px);
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 50px;
+}
+
+
+/* =====================================================
+   HERO LEFT CONTENT
+   ===================================================== */
+
+.hero-content {
+    width: 58%;
+
+    padding-top: 25px;
+}
+
+
+/* ---------- BADGE ---------- */
+
+.small-badge {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 20px;
+
+    margin-bottom: 28px;
+
+    border-radius: 30px;
+
+    background: rgba(161, 116, 255, 0.12);
+
+    color: #c026e9;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.small-badge span {
+    font-size: 18px;
+}
+
+
+/* ---------- HEADING ---------- */
+
+.hero h1 {
+    font-size: clamp(55px, 5vw, 74px);
+
+    line-height: 1.04;
+
+    letter-spacing: -3px;
+
+    font-weight: 800;
+
+    color: #111936;
+
+    margin-bottom: 28px;
+}
+
+
+.gradient-text {
+    background: linear-gradient(
+        90deg,
+        #2672ff 0%,
+        #8229ef 50%,
+        #f04bc1 100%
+    );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* ---------- DESCRIPTION ---------- */
+
+.hero-description {
+    max-width: 660px;
+
+    font-size: 20px;
+
+    line-height: 1.65;
+
+    color: #526180;
+
+    margin-bottom: 36px;
+}
+
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+
+.hero-buttons {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-bottom: 62px;
+}
+
+
+.download-btn {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    text-decoration: none;
+
+    color: #ffffff;
+
+    background: linear-gradient(
+        100deg,
+        #2673ff,
+        #ba27e8
+    );
+
+    padding: 19px 31px;
+
+    border-radius: 35px;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 16px 30px
+        rgba(67, 112, 246, 0.25);
+
+    transition: 0.3s;
+}
+
+
+.download-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 20px 35px
+        rgba(67, 112, 246, 0.35);
+}
+
+
+.booking-btn {
+    text-decoration: none;
+
+    color: #111936;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e5ef;
+
+    padding: 19px 31px;
+
+    border-radius: 35px;
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    transition: 0.3s;
+}
+
+
+.booking-btn:hover {
+    border-color: #567eff;
+
+    color: #316df6;
+
+    transform: translateY(-3px);
+}
+
+
+/* =====================================================
+   STATS
+   ===================================================== */
+
+.stats {
+    display: flex;
+
+    gap: 75px;
+}
+
+
+.stat h3 {
+    font-size: 30px;
+
+    font-weight: 800;
+
+    color: #111936;
+
+    margin-bottom: 9px;
+}
+
+
+.stat h3 span {
+    font-size: 25px;
+}
+
+
+.stat p {
+    font-size: 16px;
+
+    color: #5d6a87;
+}
+
+
+/* =====================================================
+   RIGHT VISUAL
+   ===================================================== */
+
+.hero-visual {
+    width: 42%;
+
+    min-height: 600px;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =====================================================
+   DOCTOR CARD
+   ===================================================== */
+
+.doctor-card {
+    width: 350px;
+
+    padding: 32px;
+
+    background: rgba(255, 255, 255, 0.88);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 25px 55px
+        rgba(39, 49, 91, 0.12);
+
+    backdrop-filter: blur(10px);
+
+    position: relative;
+
+    z-index: 3;
+}
+
+
+.doctor-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid #e7e9f0;
+}
+
+
+/* ---------- AVATAR ---------- */
+
+.doctor-avatar {
+    width: 58px;
+
+    height: 58px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: white;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    background: linear-gradient(
+        135deg,
+        #2475ff,
+        #a02af0
+    );
+}
+
+
+.doctor-info {
+    flex: 1;
+}
+
+
+.doctor-info h3 {
+    font-size: 20px;
+
+    line-height: 1.35;
+
+    color: #10162e;
+
+    margin-bottom: 4px;
+}
+
+
+.doctor-info p {
+    color: #68728b;
+
+    font-size: 15px;
+
+    line-height: 1.4;
+}
+
+
+/* ---------- AVAILABLE ---------- */
+
+.available {
+    background: #e3efff;
+
+    color: #1769df;
+
+    padding: 9px 14px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   TIME SLOTS
+   ===================================================== */
+
+.time-slots {
+    margin-top: 5px;
+}
+
+
+.time-slot {
+    height: 66px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom: 1px solid #e7e9f0;
+
+    color: #17203c;
+
+    font-size: 16px;
+}
+
+
+.time-slot:last-child {
+    border-bottom: none;
+}
+
+
+.clock {
+    color: #126dff;
+
+    font-size: 23px;
+}
+
+
+/* =====================================================
+   FLOATING CARDS
+   ===================================================== */
+
+.floating-card {
+    position: absolute;
+
+    z-index: 5;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    border-radius: 22px;
+
+    padding: 20px 24px;
+
+    box-shadow:
+        0 20px 40px
+        rgba(35, 47, 91, 0.12);
+
+    min-width: 235px;
+}
+
+
+.floating-card h4 {
+    color: #1c2136;
+
+    font-size: 16px;
+
+    margin-bottom: 5px;
+}
+
+
+.floating-card p {
+    color: #737b92;
+
+    font-size: 14px;
+}
+
+
+/* ---------- SERVICE ICON ---------- */
+
+.service-icon {
+    width: 40px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 22px;
+
+    font-weight: bold;
+}
+
+
+.service-icon.pink {
+    background: #ffe5f2;
+
+    color: #ff5db0;
+}
+
+
+.service-icon.blue {
+    background: #e5f0ff;
+
+    color: #1671ff;
+}
+
+
+/* ---------- FACIAL ---------- */
+
+.facial-card {
+    top: 95px;
+
+    right: -20px;
+}
+
+
+/* ---------- DENTAL ---------- */
+
+.dental-card {
+    bottom: 85px;
+
+    left: -20px;
+}
+
+
+/* =====================================================
+   RESPONSIVE DESIGN
+   ===================================================== */
+
+@media (max-width: 1100px) {
+
+    .nav-menu {
+        gap: 20px;
+    }
+
+    .nav-menu a {
+        font-size: 16px;
+    }
+
+    .hero-container {
+        gap: 20px;
+    }
+
+    .hero h1 {
+        font-size: 55px;
+    }
+
+    .hero-visual {
+        transform: scale(0.9);
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .navbar {
+        height: auto;
+
+        padding: 20px 0;
+    }
+
+
+    .nav-container {
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+
+    .nav-menu {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+
+    .hero-container {
+        flex-direction: column;
+
+        text-align: center;
+
+        padding-top: 60px;
+
+        padding-bottom: 80px;
+    }
+
+
+    .hero-content {
+        width: 100%;
+    }
+
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .hero-buttons {
+        justify-content: center;
+
+        flex-wrap: wrap;
+    }
+
+
+    .stats {
+        justify-content: center;
+
+        gap: 40px;
+    }
+
+
+    .hero-visual {
+        width: 100%;
+
+        min-height: 600px;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .nav-menu {
+        gap: 15px;
+    }
+
+
+    .nav-menu a {
+        font-size: 14px;
+    }
+
+
+    .login-btn,
+    .app-btn {
+        padding: 9px 14px;
+    }
+
+
+    .hero h1 {
+        font-size: 43px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .hero-description {
+        font-size: 17px;
+    }
+
+
+    .doctor-card {
+        width: 320px;
+
+        padding: 25px;
+    }
+
+
+    .facial-card {
+        right: -10px;
+
+        transform: scale(0.8);
+    }
+
+
+    .dental-card {
+        left: -10px;
+
+        transform: scale(0.8);
+    }
+
+
+    .stats {
+        gap: 20px;
+    }
+
+
+    .stat h3 {
+        font-size: 24px;
+    }
+
+
+    .stat p {
+        font-size: 13px;
+    }
+
 }
