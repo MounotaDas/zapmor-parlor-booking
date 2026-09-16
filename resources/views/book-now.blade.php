@@ -333,8 +333,24 @@
 
 
         <div class="booking-card">
+            @if(session('success'))
+    <div style="background:#d1fae5; color:#065f46; padding:15px; border-radius:10px; margin-bottom:20px;">
+        {{ session('success') }}
+    </div>
+@endif
 
-            <form>
+@if($errors->any())
+    <div style="background:#fee2e2; color:#991b1b; padding:15px; border-radius:10px; margin-bottom:20px;">
+        <ul style="margin:0; padding-left:20px;">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+            <form method="POST" action="{{ route('booking.store') }}">
+        @csrf
 
                 <div class="form-grid">
 
@@ -346,7 +362,7 @@
                             Full Name <span>*</span>
                         </label>
 
-                        <input type="text">
+                        <input type="text" name="customer_name" required>
 
                         <small>
                             Enter your full name.
@@ -363,7 +379,7 @@
                             Email <span>*</span>
                         </label>
 
-                        <input type="email">
+                        <input type="email" name="email" required>
 
                     </div>
 
@@ -376,7 +392,7 @@
                             Service Type <span>*</span>
                         </label>
 
-                        <select id="serviceType">
+                        <select id="serviceType" name="service_type" required>
 
                             <option value="">
                                 Select...
@@ -403,13 +419,15 @@
                             Specific Service <span>*</span>
                         </label>
 
-                        <select id="specificService" disabled>
+                        <select id="specificService" name="service_id" required>
+    <option value="">Select a service</option>
 
-                            <option>
-                                Choose service type first
-                            </option>
-
-                        </select>
+    @foreach($services as $service)
+        <option value="{{ $service->service_id }}">
+            {{ $service->service_name }}
+        </option>
+    @endforeach
+</select>
 
                     </div>
 
@@ -422,21 +440,15 @@
                             Preferred Provider
                         </label>
 
-                        <select>
+                         <select name="parlor_id">
+    <option value="">Any Available</option>
 
-                            <option>
-                                Any Available
-                            </option>
-
-                            <option>
-                                Provider 1
-                            </option>
-
-                            <option>
-                                Provider 2
-                            </option>
-
-                        </select>
+    @foreach($parlors as $parlor)
+        <option value="{{ $parlor->parlor_id }}">
+            {{ $parlor->name }}
+        </option>
+    @endforeach
+</select>
 
                     </div>
 
@@ -449,7 +461,7 @@
                             Date & Time <span>*</span>
                         </label>
 
-                        <input type="datetime-local">
+                        <input type="datetime-local" name="appointment_datetime" required>
 
                     </div>
 
@@ -464,7 +476,7 @@
                         Additional Notes
                     </label>
 
-                    <textarea></textarea>
+                    <textarea name="note"></textarea>
 
                 </div>
 
@@ -484,77 +496,7 @@
 
     <!-- JAVASCRIPT -->
 
-    <script>
-
-        const serviceType =
-            document.getElementById('serviceType');
-
-        const specificService =
-            document.getElementById('specificService');
-
-
-        serviceType.addEventListener('change', function () {
-
-            specificService.innerHTML = '';
-
-            if (this.value === '') {
-
-                specificService.disabled = true;
-
-                specificService.innerHTML =
-                    '<option>Choose service type first</option>';
-
-                return;
-            }
-
-            specificService.disabled = false;
-
-
-            let services = [];
-
-
-            if (this.value === 'doctor') {
-
-                services = [
-                    'General Physician',
-                    'Dentist',
-                    'Cardiologist',
-                    'Dermatologist'
-                ];
-
-            }
-
-
-            if (this.value === 'parlor') {
-
-                services = [
-                    'Hair Cut',
-                    'Hair Styling',
-                    'Facial',
-                    'Makeup',
-                    'Manicure',
-                    'Pedicure'
-                ];
-
-            }
-
-
-            services.forEach(function(service) {
-
-                const option =
-                    document.createElement('option');
-
-                option.value = service;
-
-                option.textContent = service;
-
-                specificService.appendChild(option);
-
-            });
-
-        });
-
-    </script>
+    
 
 </body>
 </html>
