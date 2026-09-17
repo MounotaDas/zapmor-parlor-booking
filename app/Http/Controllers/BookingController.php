@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
+    // Store new booking
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -25,5 +26,24 @@ class BookingController extends Controller
         return redirect()
             ->route('book.now')
             ->with('success', 'Your appointment has been booked successfully!');
+    }
+
+    // Search previous customers
+    public function searchCustomer(Request $request)
+    {
+        $search = $request->get('search');
+
+        if (!$search) {
+            return response()->json([]);
+        }
+
+        $customers = Appointment::where('customer_name', 'like', "%{$search}%")
+            ->orWhere('email', 'like', "%{$search}%")
+            ->select('customer_name', 'email')
+            ->distinct()
+            ->limit(10)
+            ->get();
+
+        return response()->json($customers);
     }
 }

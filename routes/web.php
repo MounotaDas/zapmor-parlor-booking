@@ -16,3 +16,7 @@ Route::get('/book-now', function () {
 
 Route::post('/book-now', [BookingController::class, 'store'])
     ->name('booking.store');
+
+// Customer search route
+Route::get('/search-customer', [BookingController::class, 'searchCustomer'])
+    ->name('customer.search');

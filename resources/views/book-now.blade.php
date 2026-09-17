@@ -356,20 +356,42 @@
 
                     <!-- FULL NAME -->
 
-                    <div class="form-group">
+                    <div class="form-group" style="position: relative;">
 
-                        <label>
-                            Full Name <span>*</span>
-                        </label>
+    <label>
+        Full Name <span>*</span>
+    </label>
 
-                        <input type="text" name="customer_name" required>
+    <input
+        type="text"
+        id="customerName"
+        name="customer_name"
+        autocomplete="off"
+        placeholder="Search your name"
+        required
+    >
 
-                        <small>
-                            Enter your full name.
-                        </small>
+    <div id="customerSuggestions"
+         style="
+            position: absolute;
+            top: 78px;
+            left: 0;
+            width: 100%;
+            background: white;
+            border: 1px solid #dfe4ef;
+            border-radius: 10px;
+            display: none;
+            z-index: 1000;
+            max-height: 180px;
+            overflow-y: auto;
+         ">
+    </div>
 
-                    </div>
+    <small>
+        Search your name if you have booked before.
+    </small>
 
+</div>
 
                     <!-- EMAIL -->
 
@@ -379,7 +401,13 @@
                             Email <span>*</span>
                         </label>
 
-                        <input type="email" name="email" required>
+                        <input
+    type="email"
+    id="customerEmail"
+    name="email"
+    placeholder="Your email"
+    required
+>
 
                     </div>
 
@@ -495,6 +523,72 @@
 
 
     <!-- JAVASCRIPT -->
+    <script>
+    const customerName = document.getElementById('customerName');
+    const customerEmail = document.getElementById('customerEmail');
+    const customerSuggestions = document.getElementById('customerSuggestions');
+
+    customerName.addEventListener('input', function () {
+
+        const search = this.value.trim();
+
+        if (search.length < 2) {
+            customerSuggestions.style.display = 'none';
+            customerSuggestions.innerHTML = '';
+            return;
+        }
+
+        fetch("{{ route('customer.search') }}?search=" + encodeURIComponent(search))
+            .then(response => response.json())
+            .then(customers => {
+
+                customerSuggestions.innerHTML = '';
+
+                if (customers.length === 0) {
+                    customerSuggestions.style.display = 'none';
+                    return;
+                }
+
+                customers.forEach(customer => {
+
+                    const item = document.createElement('div');
+
+                    item.style.padding = '12px 14px';
+                    item.style.cursor = 'pointer';
+                    item.style.borderBottom = '1px solid #eeeeee';
+
+                    item.innerHTML = `
+                        <strong>${customer.customer_name}</strong><br>
+                        <small>${customer.email}</small>
+                    `;
+
+                    item.addEventListener('click', function () {
+
+                        customerName.value = customer.customer_name;
+                        customerEmail.value = customer.email;
+
+                        customerSuggestions.style.display = 'none';
+                    });
+
+                    customerSuggestions.appendChild(item);
+                });
+
+                customerSuggestions.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Customer search error:', error);
+            });
+    });
+
+    document.addEventListener('click', function (event) {
+
+        if (!customerName.contains(event.target) &&
+            !customerSuggestions.contains(event.target)) {
+
+            customerSuggestions.style.display = 'none';
+        }
+    });
+</script>
 
     
 
