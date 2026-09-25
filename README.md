@@ -1,3 +1,37 @@
+# Zapmor – Parlor Booking Module
+
+## My Contribution
+
+I developed the following features for the Parlor module of the Zapmor project:
+
+- Parlor database design and management
+- Service database and management
+- Parlor-Service relationship
+- Parlor appointment booking system
+- Appointment management
+- Customer search by name and email
+- Appointment details viewing
+- Appointment deletion
+- Contact form and contact data storage
+- Database relationships and JOIN queries
+
+## Technologies Used
+
+- Laravel
+- PHP
+- MySQL
+- Blade
+- HTML
+- CSS
+- JavaScript
+
+
+## Git Branch
+
+`parlor-contact`
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
